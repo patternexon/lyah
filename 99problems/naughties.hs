@@ -25,7 +25,7 @@ myButLast' = head . tail . reverse
 -- Solution to Problem 3
 elementAt :: (Num b) => [a] -> b -> a
 elementAt [] _ = error "List too small"
-elementAt (x:_) 0 = x
+elementAt (x:_) 1 = x
 elementAt (x:xs) pos = elementAt xs (pos -1)
 
 
