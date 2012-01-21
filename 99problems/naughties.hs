@@ -38,3 +38,11 @@ myLength (_:xs) = 1 + myLength xs
 myReverse :: [a] -> [a]
 myReverse [] = []
 myReverse (x:xs) = (myReverse xs) ++ [x]
+
+
+-- Solution to Problem 6
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = if xs == myReverse xs 
+			then True
+			else False
+
