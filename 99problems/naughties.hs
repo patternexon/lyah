@@ -64,7 +64,23 @@ flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
 flatten (List x) = concatMap flatten x
 
-{-- Solution to Problem 8
-compress :: [a] -> [a]
-compress (x:xs) = -}
+-- Solution to Problem 8
+-- This solution does not retain the order !
+addIfNotPresent :: (Ord a) => a -> [a] -> [a]
+addIfNotPresent y [] = [y]
+addIfNotPresent y xs = if y `elem` xs
+		       	then xs
+			else xs ++ [y]
+
+compressor :: (Ord a) => [a] -> [a] -> [a]
+compressor [] [] = []
+compressor [] (c:[]) = [c]
+compressor (x:xs) cs = addIfNotPresent x $ compressor xs cs
+
+compress :: (Ord a) => [a] -> [a]
+compress xs = compressor xs []
+
+-- Solution to Problem 8
+-- attempting to retaining the order intact 
+
 
