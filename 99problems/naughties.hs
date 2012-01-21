@@ -3,3 +3,11 @@
 -- first 6 chapters of LYAH
 -- http://www.haskell.org/haskellwiki/99_questions/1_to_10
 
+
+myLast :: [a] -> a
+myLast [] = error "Cant find last element of an empty list"
+myLast (x:[]) = x
+myLast (x:xs) = myLast xs
+
+ 
+
