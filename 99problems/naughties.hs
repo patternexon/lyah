@@ -33,3 +33,8 @@ elementAt (x:xs) pos = elementAt xs (pos -1)
 myLength :: [a] -> Int
 myLength [] = 0
 myLength (_:xs) = 1 + myLength xs
+
+-- Solution to Problem 5
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = (myReverse xs) ++ [x]
