@@ -29,4 +29,7 @@ elementAt [] _ = error "List too small"
 elementAt (x:_) 1 = x
 elementAt (x:xs) pos = elementAt xs (pos -1)
 
-
+-- Solution to Problem 4
+myLength :: [a] -> Int
+myLength [] = 0
+myLength (_:xs) = 1 + myLength xs
