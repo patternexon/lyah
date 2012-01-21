@@ -46,3 +46,25 @@ isPalindrome xs = if xs == myReverse xs
 			then True
 			else False
 
+-- Solution to Problem 7
+{-data NestedList a = Elem a | List [NestedList a]
+myFlatten :: NestedList a -> [a]
+myFlatten (Elem a) = [a]
+myFlatten (List (x:xs)) = myFlatten x ++ myFlatten (List xs)
+myFlatten (List []) = []-}
+
+-- This problem is not clearly stated
+-- Inituitively, you want to solve flattening 
+-- any list of arbitrary depth
+-- Googling, that's possible by using Data.Tree
+
+data NestedList a = Elem a | List [NestedList a]
+ 
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List x) = concatMap flatten x
+
+{-- Solution to Problem 8
+compress :: [a] -> [a]
+compress (x:xs) = -}
+
