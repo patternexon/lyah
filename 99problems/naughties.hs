@@ -90,6 +90,56 @@ compressor' [] [] = []
 compressor' cs [] = cs
 compressor' cs (x:xs) = compressor' (addIfNotPresent x cs) xs 
 
-
 compress' :: (Ord a) => [a] -> [a]
 compress' xs = compressor' [] xs
+
+-- Solution to Problem 8
+
+sol8 :: Eq a => [a] -> [a]
+sol8 []     = []
+sol8 (x:xs) = x : (sol8 $ dropWhile (== x) xs)
+
+-- Alternate Solution to Problem 8
+
+sol8' :: (Eq a) => [a] -> [a]
+sol8' (x:ys@(y:_))
+	| x == y = sol8' ys
+	| otherwise = x : sol8' ys
+sol8' ys = ys
+
+-- Solution to Problem 9
+{-isSame :: (Eq a) => [a] -> a -> Bool
+isSame [] _ = False
+isSame xs y = if y == head xs 
+		then True
+		else False
+
+pack :: (Eq a) => [a] -> [[a]]
+pack (x:y:ys)
+	| x == y = [x,y] ++ pack ys
+	| otherwise = [x] : pack (y:ys)
+
+
+pack :: (Eq a) => [a] -> [[a]]
+pack []  = [[]]
+pack (x:[]) = [[x]]
+pack (x:y:[])
+	| x == y = [[x,y]]
+	| otherwise = [[x],[y]]
+pack (x:xs@(y:ys))
+	| x == y =  [[x,y]] ++ pack ys
+	| otherwise [[x]] ++ pack xs-}
+
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack [x] = [[x]]
+pack (x:xs) = 	if x `elem` (head (pack xs))
+		then (x:(head (pack xs))):(tail (pack xs))
+		else [x]:(pack xs)
+
+encode :: (Eq a) => [a] -> [(Int,a)]
+encode [] = []
+encode [x] = [(1,x)]
+encode xs = map f (pack xs) where
+		f xs = (length xs, head xs)
+
