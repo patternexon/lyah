@@ -130,16 +130,17 @@ pack (x:xs@(y:ys))
 	| x == y =  [[x,y]] ++ pack ys
 	| otherwise [[x]] ++ pack xs-}
 
+-- Solution 9
 pack :: (Eq a) => [a] -> [[a]]
 pack [] = []
 pack [x] = [[x]]
 pack (x:xs) = 	if x `elem` (head (pack xs))
 		then (x:(head (pack xs))):(tail (pack xs))
 		else [x]:(pack xs)
-
+-- Solution 10
 encode :: (Eq a) => [a] -> [(Int,a)]
 encode [] = []
 encode [x] = [(1,x)]
 encode xs = map f (pack xs) where
-		f xs = (length xs, head xs)
+		f ys = (length ys, head ys)
 
