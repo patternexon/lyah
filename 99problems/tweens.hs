@@ -45,4 +45,9 @@ encodeDirect (x:xs)
 	| otherwise  = Multiple count x : encodeDirect rest
 	where	(match, rest) = span (==x) xs
 		count = 1 + length match
-	
+
+
+-- Solution 14
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = x:x : dupli xs
