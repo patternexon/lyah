@@ -51,3 +51,15 @@ encodeDirect (x:xs)
 dupli :: [a] -> [a]
 dupli [] = []
 dupli (x:xs) = x:x : dupli xs
+
+
+-- Solution 15
+repli :: [a] -> Int -> [a]
+repli [] _ = []
+repli xs n = concatMap (repli' n) xs 
+
+repli' :: Int -> a -> [a]
+repli' n x
+	| n == 1 = [x]
+	| otherwise = [x] ++  repli' (n-1) x
+
