@@ -37,3 +37,12 @@ decode :: ListItem a -> [a]
 decode (Single x) = [x]
 decode (Multiple n x) = replicate n x
 
+-- Solution 13
+encodeDirect :: (Eq a) => [a] -> [ListItem a]
+encodeDirect [] = []
+encodeDirect (x:xs)  
+	| count == 1 = Single x : encodeDirect xs
+	| otherwise  = Multiple count x : encodeDirect rest
+	where	(match, rest) = span (==x) xs
+		count = 1 + length match
+	
