@@ -63,3 +63,14 @@ repli' n x
 	| n == 1 = [x]
 	| otherwise = [x] ++  repli' (n-1) x
 
+-- Solution 16
+dropEvery :: [a] -> Int -> [a]
+dropEvery [] _ = []
+dropEvery xs 1 = []
+dropEvery xs n 
+	| len < n = xs
+	| otherwise = first ++ dropEvery second n
+	where splits = splitAt (n-1) xs 
+	      first = fst splits
+	      second = tail (snd splits)
+	      len = length xs
