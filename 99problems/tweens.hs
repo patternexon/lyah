@@ -74,3 +74,15 @@ dropEvery xs n
 	      first = fst splits
 	      second = tail (snd splits)
 	      len = length xs
+
+-- Solution 17
+split :: [a] -> Int -> ([a], [a])
+split xs n 
+	| count < n = (xs, [])
+	| otherwise =  split' [] xs n
+	where count = length xs 	
+
+split' :: [a] -> [a] -> Int ->  ([a], [a])	
+split' es fs 0 = (es, fs)
+split' es (f:fs) n = split' (es++[f]) fs (n-1)
+		
