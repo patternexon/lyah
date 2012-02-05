@@ -92,5 +92,16 @@ slice :: [a] -> Int -> Int -> [a]
 slice xs i j = if i1 > j
 		then	error "Cant slice in such a way"
 		else	fst (split (snd (split xs i1)) (j-i1))
-		where i1 = i -1 		
+		where i1 = i-1 
+
+-- Solution 19
+rotate :: [a] -> Int -> [a]
+rotate xs 0 = xs
+rotate xs n
+	| n < 0 = rotate xs (len + n)
+	| otherwise = rest ++ initial
+		where initial = slice xs 1 n
+		      rest    = slice xs (n+1) len
+		      len     = length xs
+		
 		
