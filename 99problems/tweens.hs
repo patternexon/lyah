@@ -103,5 +103,14 @@ rotate xs n
 		where initial = slice xs 1 n
 		      rest    = slice xs (n+1) len
 		      len     = length xs
+
+-- Solution 20
+removeAt :: Int -> [a] -> (a, [a])
+--removeAt 0 xs = xs
+--removeAt _ [] = []
+removeAt n xs = (	head (slice xs n (n+1)),
+		 	(slice xs 1 (n-1)) ++ (slice xs (n+1) len))
+		where len = length xs
+
 		
 		
