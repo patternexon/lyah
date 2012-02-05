@@ -85,4 +85,12 @@ split xs n
 split' :: [a] -> [a] -> Int ->  ([a], [a])	
 split' es fs 0 = (es, fs)
 split' es (f:fs) n = split' (es++[f]) fs (n-1)
+
+
+-- Solution 18
+slice :: [a] -> Int -> Int -> [a]
+slice xs i j = if i1 > j
+		then	error "Cant slice in such a way"
+		else	fst (split (snd (split xs i1)) (j-i1))
+		where i1 = i -1 		
 		
