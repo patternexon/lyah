@@ -23,6 +23,7 @@ phoneNumber (Person _ _ _ _ number _) = number
 flavor :: Person -> String  
 flavor (Person _ _ _ _ _ flavor) = flavor -}
 
+{-
 data Person = Person { firstName :: String
 		     , lastName :: String
 		     , age :: Int
@@ -31,3 +32,9 @@ data Person = Person { firstName :: String
 		     , flavor :: String
 		     } deriving (Show)
 
+-}
+
+data Person = Person { firstName :: String
+		     , lastName :: String
+		     , age :: Int
+		     } deriving (Eq, Show, Read)

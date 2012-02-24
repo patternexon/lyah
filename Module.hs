@@ -66,3 +66,8 @@ phoneBook' =
 
 phoneBookToMap :: (Ord k) => [(k, String)] -> Map.Map k String
 phoneBookToMap xs = Map.fromListWith (\number1 number2 -> number1 ++ ", " ++ number2) xs
+
+phoneBookToMap' :: (Ord k) => [(k, a)] -> Map.Map k [a]
+phoneBookToMap' xs = Map.fromListWith (++) $ map (\(k,v) -> (k,[v])) xs
+
+
