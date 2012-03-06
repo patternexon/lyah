@@ -9,8 +9,8 @@ treeInsert :: (Ord a) => a -> Tree a -> Tree a
 treeInsert x EmptyTree = singleton x
 treeInsert x (Node t left right) 
 	| x == t = Node x left right
-	| x > t  = Node t left (treeInsert t right)
-	| x < t  = Node t (treeInsert t left) right
+	| x > t  = Node t left (treeInsert x right)
+	| x < t  = Node t (treeInsert x left) right
 
 
 treeElem :: (Ord a) => a -> Tree a -> Bool 
