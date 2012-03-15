@@ -7,3 +7,10 @@ insertAt :: (Eq a) => a -> [a] -> Int -> [a]
 insertAt x [] _ = [x]
 insertAt x ys n = left ++ [x] ++ right
     where (left, right) = splitAt (n-1) ys
+
+-- Solution to Problem 22
+range :: Int -> Int -> [Int]
+range x y = if x > y
+            then []
+            else
+                x : range (succ x) y
