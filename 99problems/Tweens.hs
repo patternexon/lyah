@@ -1,5 +1,20 @@
 -- Wed Feb  1 00:44:20 EST 2012
 -- http://www.haskell.org/haskellwiki/99_questions/11_to_20
+module Tweens
+( pack
+, encode
+, encodeModified
+, decodeModified
+, encodeDirect
+, dupli
+, repli
+, dropEvery
+, split
+, slice
+, rotate
+, removeAt
+) where
+
 -- Solution 9
 pack :: (Eq a) => [a] -> [[a]]
 pack [] = []
@@ -112,5 +127,3 @@ removeAt n xs = (	head (slice xs n (n+1)),
 		 	(slice xs 1 (n-1)) ++ (slice xs (n+1) len))
 		where len = length xs
 
-		
-		

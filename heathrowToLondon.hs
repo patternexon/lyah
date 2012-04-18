@@ -50,4 +50,3 @@ main = do
 	putStrLn $ "The best path to take is: " ++ pathString
 	putStrLn $ "The price is: " ++ show pathPrice
 
-					
