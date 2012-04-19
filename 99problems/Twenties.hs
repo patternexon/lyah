@@ -26,8 +26,11 @@ range x y = if x > y
 rnd_select :: (Eq a) => [a] -> Int -> [a]
 rnd_select [] _ = []
 rnd_select _ 0 = []
-rnd_select ys n = x : rnd_select xs (n-1)
-            where (x, xs) = removeAt 3 ys
---            where (x, xs) = removeAt (rnd_index ys) ys
+rnd_select ys n = 
+    let 
+        (rnd_index, gen) = randomR (1, length ys) (mkStdGen 200)
+        (x, xs) = removeAt rnd_index ys
+    in x : rnd_select xs (n-1)
+
 
 
