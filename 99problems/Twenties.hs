@@ -44,5 +44,12 @@ rnd_select' n r gen = rnd_select [1..r] n gen
 --To run
 -- *Twenties> getStdRandom (rnd_select' 3 10)
 
+-- Solution to Problem 25
+rnd_permu :: (Eq a, RandomGen g) => [a] -> g -> ([a], g)
+rnd_permu [] gen = ([], gen)
+rnd_permu xs gen = rnd_select xs (length xs) gen
+--To run
+-- *Twenties> getStdRandom (rnd_permu  [1..10])                                                   │                                                                                               
+--[3,1,6,10,9,8,4,2,7,5]
 
 
