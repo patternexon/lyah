@@ -115,7 +115,7 @@ rotate xs 0 = xs
 rotate xs n
 	| n < 0 = rotate xs (len + n)
 	| otherwise = rest ++ initial
-		where initial = slice xs 1 n
+		where initial = slice xs 1  n
 		      rest    = slice xs (n+1) len
 		      len     = length xs
 

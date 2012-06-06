@@ -4,6 +4,7 @@ module Twenties
 ( insertAt
 , range
 , rnd_select
+, rnd_select'
 ) where
 import System.Random
 import Data.List
@@ -23,14 +24,25 @@ range x y = if x > y
                 x : range (succ x) y
 
 -- Solution to Problem 23
-rnd_select :: (Eq a) => [a] -> Int -> [a]
-rnd_select [] _ = []
-rnd_select _ 0 = []
-rnd_select ys n = 
-    let 
-        (rnd_index, gen) = randomR (1, length ys) (mkStdGen 200)
+rnd_select :: (Eq a, RandomGen g) => [a] -> Int -> g -> ([a], g)
+rnd_select [] _ gen = ([], gen)
+rnd_select _ 0 gen = ([], gen)
+rnd_select ys n gen =
+    let (rnd_index, gen') = randomR (1, length ys) gen
         (x, xs) = removeAt rnd_index ys
-    in x : rnd_select xs (n-1)
+        (xs', gen'') = rnd_select xs (n-1) gen'
+    in (x : xs', gen'')
+
+-- To run 
+-- *Twenties> getStdRandom (rnd_select [1..10] 3)
+
+-- Solution to Problem 24
+rnd_select' :: RandomGen g => Int -> Int -> g -> ([Int],g)
+rnd_select' 0 _ gen = ([], gen)
+rnd_select' _ 0 gen = ([], gen)
+rnd_select' n r gen = rnd_select [1..r] n gen
+--To run
+-- *Twenties> getStdRandom (rnd_select' 3 10)
 
 
 
